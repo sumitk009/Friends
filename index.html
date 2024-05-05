@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Form 😊</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 400px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    .form-header {
+        background: #ffc107;
+        color: #fff;
+        padding: 0.2rem;
+        text-align: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+    .form-group {
+        padding: 0.2rem;
+        border-bottom: 1px solid #c8c8c8;
+    }
+    label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .required::after {
+        content: " *";
+        color: red;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background: #ffc107;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background: #ffca28;
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animated {
+        animation: fadeInUp 0.5s forwards;
+    }
+</style>
+</head>
+<body>
+
+<audio id="song" src="your-song-url.mp3"></audio>
+
+<div class="container animated">
+    <div class="form-header">
+        <h2>Friendship Form 😊</h2>
+    </div>
+    <form method="post" name="google-sheet">
+        <div class="form-group">
+            <label for="name" class="required">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="friend_name" class="required">Friend's Name:</label>
+            <input type="text" id="friend_name" name="friend_name" placeholder="Friend's Name" required>
+        </div>
+        <!-- <div class="form-group">
+            <label for="email" class="required">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <label for="dob" class="required">Your Date of Birth:</label>
+            <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile" class="required">Mobile Number:</label>
+            <input type="number" id="mobile" name="mobile" placeholder="Mobile Number" maxlength="10">
+        </div> -->
+        <div class="form-group">
+            <label for="message" class="required">Message to your Friend:</label>
+            <textarea id="message" name="message" rows="3" placeholder="Write a thought for your friend....." required></textarea>
+        </div>
+      <input type="submit" value="Send">
+    </form>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyjM5iySMYSCzv9jfFUHQxp6Fao_ESU0oyjKo6_6m0v34urjZz23Ghf188wzAmwnnyZog/exec'
+    const form = document.forms['google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Accepted!"))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+</html>
